@@ -137,6 +137,10 @@
                                     <constraint firstItem="2cK-tj-ZJ1" firstAttribute="leading" secondItem="4to-lu-px0" secondAttribute="leading" constant="10" id="du4-kO-33F"/>
                                     <constraint firstItem="2cK-tj-ZJ1" firstAttribute="top" secondItem="4to-lu-px0" secondAttribute="top" constant="10" id="gkh-Ke-jXd"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="UqY-wE-zNM" appends="YES" id="wBn-S3-ErD"/>
+                                    <outletCollection property="gestureRecognizers" destination="6hd-rr-c5l" appends="YES" id="ltS-hL-NDK"/>
+                                </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="YSO-8T-z9r" userLabel="Button Stack View">
                                 <rect key="frame" x="67" y="688" width="280" height="70"/>
@@ -281,6 +285,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="UqY-wE-zNM" userLabel="SwipeUp Gesture Recognizer">
+                    <connections>
+                        <action selector="swipeForShareGesture:" destination="BYZ-38-t0r" id="1HY-Ge-ARp"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="6hd-rr-c5l" userLabel="SwipeLeft Gesture Recognizer">
+                    <connections>
+                        <action selector="swipeForShareGesture:" destination="BYZ-38-t0r" id="3LA-35-2Np"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-23.188405797101453" y="60.9375"/>
         </scene>

@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     var squareSelected = UIButton()
+    var selectedLayoutImage = UIImage(named: "Selected")
     
     // - Swipe Label
     @IBOutlet weak var swipeLabel: UILabel!
@@ -35,7 +36,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstLayoutButton.isSelected = true
+        //        firstLayoutButton.isSelected = true
     }
     
     @IBAction func selectLayout1(_ sender: Any) {
@@ -48,7 +49,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         firstLayoutButton.isSelected = true
         secondLayoutButton.isSelected = false
         thirdLayoutButton.isSelected = false
-        firstLayoutButton.setImage(UIImage(named: "Selected"), for: .selected)
+        firstLayoutButton.setImage(selectedLayoutImage, for: .selected)
+        
+        // - Only for test, remove before publish
+        self.shareAnimation(x: 0, y: 0)
     }
     
     @IBAction func selectLayout2(_ sender: Any) {
@@ -61,7 +65,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         firstLayoutButton.isSelected = false
         secondLayoutButton.isSelected = true
         thirdLayoutButton.isSelected = false
-        secondLayoutButton.setImage(UIImage(named: "Selected"), for: .selected)
+        secondLayoutButton.setImage(selectedLayoutImage, for: .selected)
+        
+        // - Only for test, remove before publish
+        self.shareAnimation(x: 0, y: 0)
     }
     
     @IBAction func selectLayout3(_ sender: Any) {
@@ -74,7 +81,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         firstLayoutButton.isSelected = false
         secondLayoutButton.isSelected = false
         thirdLayoutButton.isSelected = true
-        thirdLayoutButton.setImage(UIImage(named: "Selected"), for: .selected)
+        thirdLayoutButton.setImage(selectedLayoutImage, for: .selected)
+        
+        // - Only for test, remove before publish
+        self.shareAnimation(x: 0, y: 0)
     }
     
     @IBAction func selectedSquare(_ sender: UIButton) {
@@ -100,7 +110,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        // - quitte sans selection
+        picker.dismiss(animated: true, completion: nil)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -108,6 +118,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
             self.swipeLabel.text = "Swipe left to share"
         } else {
             self.swipeLabel.text = "Swipe up to share"
+        }
+    }
+    
+    func viewToImage(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return UIImage(cgImage: image!.cgImage!)
+    }
+    
+    private func shareAnimation(x: CGFloat, y: CGFloat) {
+        UIView.animate(withDuration: 0.75, animations: {
+            self.gridView.transform = CGAffineTransform(translationX: x, y: y)
+        })
+    }
+    
+    
+    @IBAction func swipeForShareGesture(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case .up where UIDevice.current.orientation.isLandscape == false :
+            self.shareAnimation(x: 0, y: -700)
+        case .left where UIDevice.current.orientation.isLandscape == true :
+            self.shareAnimation(x: -700, y: 0)
+        default :
+            print("wrong direction")
+            break
         }
     }
 }

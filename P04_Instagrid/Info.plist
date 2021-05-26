@@ -48,7 +48,7 @@
 		<string>Delm-Medium.otf</string>
 		<string>ThirstySoftRegular.otf</string>
 	</array>
-    <key>NSPhotoLibraryUsageDescription</key>
-        <string>Access to pick a photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to pick a photo</string>
 </dict>
 </plist>

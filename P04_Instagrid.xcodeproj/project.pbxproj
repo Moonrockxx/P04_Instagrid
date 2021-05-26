@@ -12,8 +12,8 @@
 		604AA5CA2626CC200097DB0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 604AA5C82626CC200097DB0F /* Main.storyboard */; };
 		604AA5CC2626CC210097DB0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 604AA5CB2626CC210097DB0F /* Assets.xcassets */; };
 		604AA5CF2626CC210097DB0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 604AA5CD2626CC210097DB0F /* LaunchScreen.storyboard */; };
-		6054A67226557078000754CC /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6054A67026557078000754CC /* Delm-Medium.otf */; };
-		6054A67326557078000754CC /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6054A67126557078000754CC /* ThirstySoftRegular.otf */; };
+		607A0AE3265EA28D00151582 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 607A0AE1265EA28D00151582 /* Delm-Medium.otf */; };
+		607A0AE4265EA28D00151582 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 607A0AE2265EA28D00151582 /* ThirstySoftRegular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +24,8 @@
 		604AA5CB2626CC210097DB0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		604AA5CE2626CC210097DB0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		604AA5D02626CC210097DB0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6054A67026557078000754CC /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delm-Medium.otf"; path = "../../../../../../Downloads/Delm-Medium.otf"; sourceTree = "<group>"; };
-		6054A67126557078000754CC /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThirstySoftRegular.otf; path = ../../../../../../Downloads/ThirstySoftRegular.otf; sourceTree = "<group>"; };
+		607A0AE1265EA28D00151582 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delm-Medium.otf"; path = "../../../../../../Downloads/Delm-Medium.otf"; sourceTree = "<group>"; };
+		607A0AE2265EA28D00151582 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThirstySoftRegular.otf; path = ../../../../../../Downloads/ThirstySoftRegular.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +66,8 @@
 		602A6AD02628874F007E1F7D /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				6054A67026557078000754CC /* Delm-Medium.otf */,
-				6054A67126557078000754CC /* ThirstySoftRegular.otf */,
+				607A0AE1265EA28D00151582 /* Delm-Medium.otf */,
+				607A0AE2265EA28D00151582 /* ThirstySoftRegular.otf */,
 				604AA5C22626CC200097DB0F /* AppDelegate.swift */,
 			);
 			path = SupportingFiles;
@@ -161,8 +161,8 @@
 			files = (
 				604AA5CF2626CC210097DB0F /* LaunchScreen.storyboard in Resources */,
 				604AA5CC2626CC210097DB0F /* Assets.xcassets in Resources */,
-				6054A67326557078000754CC /* ThirstySoftRegular.otf in Resources */,
-				6054A67226557078000754CC /* Delm-Medium.otf in Resources */,
+				607A0AE4265EA28D00151582 /* ThirstySoftRegular.otf in Resources */,
+				607A0AE3265EA28D00151582 /* Delm-Medium.otf in Resources */,
 				604AA5CA2626CC200097DB0F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

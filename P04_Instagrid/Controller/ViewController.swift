@@ -105,6 +105,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             squareSelected.setImage(pickedImage, for: .normal)
+            squareSelected.contentMode = .center
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -140,11 +141,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         switch sender.direction {
         case .up where UIDevice.current.orientation.isLandscape == false :
             self.shareAnimation(x: 0, y: -700)
+            showShareSheet()
         case .left where UIDevice.current.orientation.isLandscape == true :
             self.shareAnimation(x: -700, y: 0)
+            showShareSheet()
         default :
             print("wrong direction")
             break
         }
+    }
+    
+    func showShareSheet() {
+        let items = viewToImage(view: gridView)
+        let ac = UIActivityViewController(activityItems: [items as Any], applicationActivities: [])
+        ac.completionWithItemsHandler = {
+            (activityType, completed, _, error) in
+            if completed {
+                self.shareAnimation(x: 0, y: 0)
+            } else {
+                self.shareAnimation(x: 0, y: 0)
+            }
+        }
+        present(ac, animated: true)
     }
 }

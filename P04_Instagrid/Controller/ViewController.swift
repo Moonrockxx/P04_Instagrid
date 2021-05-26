@@ -104,8 +104,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
+            squareSelected.imageView?.contentMode = .scaleAspectFill
+            squareSelected.clipsToBounds = false
             squareSelected.setImage(pickedImage, for: .normal)
-            squareSelected.contentMode = .center
         }
         picker.dismiss(animated: true, completion: nil)
     }

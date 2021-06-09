@@ -9,9 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // - Layout choices buttons
+    enum layoutChoices {
+        case firstLayout, secondLayout, thirdLayout
+    }
+    
     var squareSelected = UIButton()
     var selectedLayoutImage = UIImage(named: "Selected")
     
+    // MARK: IBOutlets
     // - Swipe Label
     @IBOutlet weak var swipeLabel: UILabel!
     
@@ -24,11 +30,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var gridBottomRight: UIButton!
     @IBOutlet weak var rectangleBottom: UIButton!
     
-    // - Layout choices buttons
     
-    enum layoutChoices {
-        case firstLayout, secondLayout, thirdLayout
-    }
     
     @IBOutlet weak var firstLayoutButton: UIButton!
     @IBOutlet weak var secondLayoutButton: UIButton!
@@ -36,11 +38,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        firstLayoutButton.isSelected = true
     }
     
     
-    // MARK: - Test
+    // MARK: - IBAction
+    
     @IBAction func selectLayout1(_ sender: Any) {
         gridTopLeft.isHidden = true
         gridTopRight.isHidden = true
@@ -95,14 +97,21 @@ class ViewController: UIViewController {
         print(sender.tag)
     }
     
-    func selectPictureInLibrary() {
-        let imagePickerController = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            imagePickerController.sourceType = .photoLibrary
+    @IBAction func swipeForShareGesture(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case .up where UIDevice.current.orientation.isLandscape == false :
+            self.shareAnimation(x: 0, y: -700)
+            showShareSheet()
+        case .left where UIDevice.current.orientation.isLandscape == true :
+            self.shareAnimation(x: -700, y: 0)
+            showShareSheet()
+        default :
+            print("wrong direction")
+            break
         }
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true, completion: nil)
     }
+    
+    // MARK: Functions
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.orientation.isLandscape {
@@ -110,6 +119,15 @@ class ViewController: UIViewController {
         } else {
             self.swipeLabel.text = "Swipe up to share"
         }
+    }
+    
+    func selectPictureInLibrary() {
+        let imagePickerController = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePickerController.sourceType = .photoLibrary
+        }
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     func viewToImage(view: UIView) -> UIImage? {
@@ -124,21 +142,6 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.75, animations: {
             self.gridView.transform = CGAffineTransform(translationX: x, y: y)
         })
-    }
-    
-    
-    @IBAction func swipeForShareGesture(_ sender: UISwipeGestureRecognizer) {
-        switch sender.direction {
-        case .up where UIDevice.current.orientation.isLandscape == false :
-            self.shareAnimation(x: 0, y: -700)
-            showShareSheet()
-        case .left where UIDevice.current.orientation.isLandscape == true :
-            self.shareAnimation(x: -700, y: 0)
-            showShareSheet()
-        default :
-            print("wrong direction")
-            break
-        }
     }
     
     func showShareSheet() {
@@ -156,6 +159,7 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: Extensions
 extension ViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {

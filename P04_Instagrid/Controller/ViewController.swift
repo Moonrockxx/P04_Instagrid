@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ViewController: UIViewController {
     
     var squareSelected = UIButton()
     var selectedLayoutImage = UIImage(named: "Selected")
@@ -39,6 +39,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         //        firstLayoutButton.isSelected = true
     }
     
+    
+    // MARK: - Test
     @IBAction func selectLayout1(_ sender: Any) {
         gridTopLeft.isHidden = true
         gridTopRight.isHidden = true
@@ -102,19 +104,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[.originalImage] as? UIImage {
-            squareSelected.imageView?.contentMode = .scaleAspectFill
-            squareSelected.clipsToBounds = false
-            squareSelected.setImage(pickedImage, for: .normal)
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.orientation.isLandscape {
             self.swipeLabel.text = "Swipe left to share"
@@ -164,5 +153,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
             }
         }
         present(ac, animated: true)
+    }
+}
+
+extension ViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            squareSelected.imageView?.contentMode = .scaleAspectFill
+            squareSelected.clipsToBounds = false
+            squareSelected.setImage(pickedImage, for: .normal)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
